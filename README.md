@@ -71,37 +71,23 @@ wordle-solver/
 
 ---
 
-## 🚀 Build & Run
+## 🚀 Quick Start
 
 ### Requirements
-- `g++` with C++17 support (`g++ --version` should show 7+)
-- macOS / Linux
-
-### Build with Make (simplest)
+- `g++` with C++17 support (macOS / Linux)
 
 ```bash
-git clone https://github.com/nayan-bele/wordle-solver.git
-cd wordle-solver
-
-make          # Builds: benchmark, wordle_cli, test_feedback
-make test     # Build + run all 16 unit tests
-make clean    # Remove binaries
-```
-
-### Build with CMake
-
-```bash
-mkdir build && cd build
-cmake .. -DCMAKE_BUILD_TYPE=Release
+git clone https://github.com/nayan-bele/WordleSolver.git
+cd WordleSolver
 make
 ```
 
-### Run the Benchmark
+That's it — builds everything in ~2 seconds. Then run:
 
 ```bash
-./benchmark              # V1 + V2 on all 2315 words (~1.6s total)
-./benchmark --v2-only    # Only V2
-./benchmark --quick      # First 100 words (fast test)
+./benchmark       # Full benchmark: V1 vs V2 on all 2315 words
+./wordle_cli      # Play Wordle with solver assistance
+make test         # Run all 16 unit tests
 ```
 
 ### Use as a Real Wordle Assistant
