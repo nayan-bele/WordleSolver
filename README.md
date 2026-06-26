@@ -1,14 +1,10 @@
-# 🟩 Wordle Solver — Shannon Entropy Edition (C++)
+#  Wordle Solver 
 
 > **An information-theoretic Wordle solver that picks the optimal guess at every step by maximizing expected information gain (Shannon entropy). Built in C++17 — runs the full 2,315-word benchmark in under 2 seconds.**
 
-[![C++17](https://img.shields.io/badge/C++-17-blue.svg)](https://en.cppreference.com/w/cpp/17)
-[![Build](https://img.shields.io/badge/build-passing-brightgreen.svg)](#build--run)
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-
 ---
 
-## 📊 Benchmark Results
+##  Benchmark Results
 
 | Solver | Avg Guesses | Max | Solved ≤ 6 | Failed | Runtime |
 |--------|-------------|-----|------------|--------|---------|
@@ -27,7 +23,7 @@
 
 ---
 
-## 🧠 How It Works
+##  How It Works
 
 Wordle gives per-letter feedback:
 - 🟩 **Green** — correct letter, correct position
@@ -56,12 +52,12 @@ wordle-solver/
 │   ├── answers.txt          # 2315 official Wordle answers
 │   └── guesses.txt          # 14854 allowed guesses
 ├── src/
-│   ├── feedback.h / .cpp    # Core engine — feedback + filtering
+│   ├── feedback.h / .cpp    
 │   ├── solver.h  / .cpp     # V1 (brute-force) + V2 (entropy)
-│   ├── benchmark.cpp        # Full benchmark runner (main)
-│   └── cli.cpp              # Interactive CLI assistant (main)
+│   ├── benchmark.cpp        
+│   └── cli.cpp              
 ├── tests/
-│   └── test_feedback.cpp    # 16 unit tests — all edge cases
+│   └── test_feedback.cpp    
 ├── results/
 │   └── benchmark_results.csv
 ├── CMakeLists.txt
@@ -71,10 +67,7 @@ wordle-solver/
 
 ---
 
-## 🚀 Quick Start
-
-### Requirements
-- `g++` with C++17 support (macOS / Linux)
+##  Quick Start
 
 ```bash
 git clone https://github.com/nayan-bele/WordleSolver.git
@@ -98,13 +91,13 @@ make test         # Run all 16 unit tests
 
 ---
 
-## 💻 Interactive CLI Demo
+##  Interactive CLI Demo
 
 ```
-  +====================================================+
-  |     WORDLE SOLVER  --  Entropy Edition             |
-  |     Powered by Shannon Information Theory          |
-  +====================================================+
+  ====================================================
+      WORDLE SOLVER  --  Entropy Edition             
+      Powered by Shannon Information Theory          
+  ====================================================
 
   -- Turn 1 ----------------------------------------
   Remaining candidates: 2315
@@ -125,14 +118,14 @@ make test         # Run all 16 unit tests
 
   Enter feedback: 22222
 
-  +-----------------------------------+
-  |  Solved in 3 guesses!             |
-  +-----------------------------------+
+  -----------------------------------
+    Solved in 3 guesses!             
+  -----------------------------------
 ```
 
 ---
 
-## 🔬 The Tricky Part — Duplicate Letters
+##  Duplicate Letters
 
 The feedback function uses a **two-pass algorithm** to match Wordle's exact rules:
 
@@ -153,7 +146,7 @@ Result: `01220` → `⬜🟨🟩🟩⬜`
 
 ---
 
-## 🧪 Unit Tests
+##  Unit Tests
 
 ```bash
 make test
@@ -185,44 +178,3 @@ make test
 
 ---
 
-## ⚡ C++ vs Python Speed
-
-| Operation | Python | C++ | Speedup |
-|---|---|---|---|
-| Full benchmark (2315 words) | ~33s | ~1.6s | **~20x** |
-| V2 per word | ~14ms | ~0.6ms | **~23x** |
-| Build/compile step | None | `make` (2s) | — |
-
----
-
-## 🛠️ Implementation Notes
-
-| Decision | Choice | Why |
-|---|---|---|
-| Language | C++17 | `std::unordered_map`, structured bindings, fast |
-| Feedback encoding | `std::string` `"22010"` | Easy to hash, cheap to compare |
-| Entropy buckets | `unordered_map<string,int>` | O(1) lookup, reserve(243) for cache |
-| First guess | Hardcoded `"crane"` | Skip full search on turn 1 |
-| Turn 2+ guess pool | Remaining candidates | ~10x faster, negligible accuracy loss |
-| Build system | Makefile + CMake | Makefile for simplicity, CMake for CI |
-
----
-
-## 🎯 Resume Bullet
-
-> *"Built a C++ Wordle solver using Shannon entropy for information-maximizing guess selection; benchmarked against all 2,315 possible answers achieving 3.55 average guesses and 99.48% solve rate within 6, completing the full benchmark in under 2 seconds via O(2) optimization."*
-
----
-
-## 🔮 Stretch Goals
-
-- **Precompute full 14k × 2315 pattern matrix** with NumPy-style vectorization → turn 2+ becomes O(1) lookup
-- **Minimax solver**: optimize for worst-case instead of expected-case entropy
-- **Hard mode**: require all revealed letters reused in subsequent guesses
-- **Web API**: expose solver via a lightweight HTTP server (using cpp-httplib)
-
----
-
-## 📄 License
-
-MIT — use freely, attribution appreciated.
