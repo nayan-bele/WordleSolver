@@ -1,20 +1,27 @@
-# Python
+# C++ build outputs
+benchmark
+wordle_cli
+test_feedback
+*.o
+*.out
+
+# CMake build dir
+build/
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile.cmake
+
+# Python (old version — superseded by C++)
 __pycache__/
 *.py[cod]
-*$py.class
 *.pyc
-
-# Virtual environments
 venv/
-env/
-.env/
 .venv/
+.pytest_cache/
 
-# Results (generated — add these back if you want to commit results)
+# Results (generated — commit if you want to show results)
 results/*.csv
-
-# Data files (optional — you can commit word lists too)
-# data/
 
 # IDE
 .vscode/
@@ -25,8 +32,3 @@ results/*.csv
 # OS
 .DS_Store
 Thumbs.db
-
-# Test artifacts
-.pytest_cache/
-htmlcov/
-.coverage
